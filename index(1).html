@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Menusha 🌸</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(180deg,#1a1236,#0d0b1f);
+color:white;overflow-x:hidden;
+}
+.screen{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.card{
+max-width:850px;width:100%;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+border-radius:28px;padding:32px;text-align:center;
+box-shadow:0 0 30px rgba(255,255,255,.08);
+}
+.hidden{display:none}
+button{
+border:none;border-radius:999px;padding:14px 24px;
+background:#a78bfa;color:white;cursor:pointer;margin-top:18px
+}
+#typewriter{min-height:120px;line-height:1.8}
+.firefly{position:fixed;pointer-events:none;animation:rise linear infinite}
+@keyframes rise{from{transform:translateY(110vh);opacity:0}20%{opacity:1}to{transform:translateY(-10vh);opacity:0}}
+.flower{font-size:120px;animation:bloom 2s ease}
+@keyframes bloom{from{transform:scale(0)}to{transform:scale(1)}}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.photo{height:170px;border-radius:18px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center}
+input{padding:12px;border-radius:10px;border:none;margin-top:12px}
+h1,h2{margin-bottom:14px}
+p{line-height:1.9}
+</style>
+</head>
+<body>
+
+<div id="intro" class="screen">
+<div class="card">
+<h1>🌸 For Menusha 🌸</h1>
+<div id="typewriter"></div>
+<button onclick="goPuzzle()">Continue ✨</button>
+</div>
+</div>
+
+<div id="puzzle" class="screen hidden">
+<div class="card">
+<h2>🧩 Small Challenge</h2>
+<p>What becomes more valuable the more you give it away?</p>
+<input id="ans" placeholder="Your answer">
+<br>
+<button onclick="check()">Submit</button>
+<p style="margin-top:15px;font-size:.9em">Hint: kindness, friendship, care...</p>
+</div>
+</div>
+
+<div id="flower" class="screen hidden">
+<div class="card">
+<div class="flower">🌸</div>
+<h2>A Hydrangea For Silly Kiddo</h2>
+<p>
+Hydrangeas symbolize gratitude, understanding, and appreciation.
+<br><br>
+Out of all the flowers, I chose a hydrangea because some people leave a quiet impact on our lives.
+Not loudly. Not dramatically. Just enough to make ordinary days brighter.
+<br><br>
+Whether you realize it or not, you've done exactly that.
+</p>
+<button onclick="openLetter()">Open Secret Letter 💌</button>
+<div id="letter" class="hidden" style="margin-top:20px">
+<p>
+Dear Silly Kiddo,<br><br>
+I don't know if you realize it, but you've become someone important to me.
+Not because of one big moment, but because of many small ones.
+The conversations, the laughter, the random moments.
+Sometimes people quietly become special without even trying.
+You're one of those people.
+<br><br>
+So this little flower is for you. 🌸
+</p>
+<button onclick="openGallery()">Memory Book 📖</button>
+</div>
+</div>
+</div>
+
+<div id="gallery" class="screen hidden">
+<div class="card">
+<h2>📸 Memory Book</h2>
+<p>You can replace these placeholders with your own photos later.</p>
+<div class="gallery">
+<div class="photo">Photo 1</div>
+<div class="photo">Photo 2</div>
+<div class="photo">Photo 3</div>
+<div class="photo">Photo 4</div>
+</div>
+<button onclick="finalPage()">One Last Thing 💜</button>
+</div>
+</div>
+
+<div id="final" class="screen hidden">
+<div class="card">
+<h1>🌙 One Last Thing</h1>
+<p>
+There are billions of people in the world, yet somehow a few become unforgettable.
+Not because they're perfect, but because they become part of our days, our memories, and our smiles.
+<br><br>
+Thank you for being one of those people.
+<br><br>
+🌸 For Menusha 🌸
+</p>
+</div>
+</div>
+
+<script>
+const txt="Before you continue, I want you to know that this isn't just a random webpage. It's a small collection of appreciation and a flower made for someone special. Take your time, Silly Kiddo. 🌸";
+let i=0;
+(function type(){
+ if(i<txt.length){document.getElementById('typewriter').innerHTML+=txt[i++];setTimeout(type,35);}
+})();
+
+function goPuzzle(){intro.classList.add('hidden');puzzle.classList.remove('hidden');}
+function check(){
+ let a=document.getElementById('ans').value.toLowerCase();
+ if(a.includes('love')||a.includes('kindness')||a.includes('friendship')||a.includes('care')){
+   puzzle.classList.add('hidden');flower.classList.remove('hidden');
+ }else alert('Try again 🌸');
+}
+function openLetter(){document.getElementById('letter').classList.remove('hidden');}
+function openGallery(){flower.classList.add('hidden');gallery.classList.remove('hidden');}
+function finalPage(){gallery.classList.add('hidden');final.classList.remove('hidden');}
+
+const symbols=["✨","💜","🌸","⭐"];
+for(let j=0;j<60;j++){
+ let d=document.createElement('div');
+ d.className='firefly';
+ d.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+ d.style.left=Math.random()*100+'vw';
+ d.style.animationDuration=(8+Math.random()*10)+'s';
+ d.style.animationDelay=Math.random()*5+'s';
+ document.body.appendChild(d);
+}
+</script>
+</body>
+</html>
